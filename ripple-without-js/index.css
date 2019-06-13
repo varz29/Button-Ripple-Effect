@@ -1,5 +1,5 @@
 /* Ignore this styles start */
-  body{
+body{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,14 +39,17 @@
 /* Ignore this styles End */
 
 
+
+
 /* Ripple Styles start */
-  .ripple{
-    cursor: pointer;
-    outline: none;
+
+
+.ripple {
+    position: relative;
     overflow: hidden;
     transform: translate(-50%, -50%);
+    outline: none;
   }
-
   .ripple:hover{
     box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
     transition: 0.2s all ease-in-out; 
@@ -56,32 +59,34 @@
     box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
     transition: 0.2s all ease-in-out; 
   }
-  
-  .ripple .ripple-animation{
+
+    .ripple:after {
+    content: "";
+    display: block;
     position: absolute;
-    border-radius: 100%;
-    animation: ripple 1.2s;
-    transform: scale(0);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
   }
 
-  .ripple-light .ripple-animation{
-    background: rgba(255, 255, 255, 0.3);
+  .ripple-light:after{
+    background-image: radial-gradient(circle, #fff 10%, transparent 10%);
   }
 
-  .ripple-dark .ripple-animation{
-    background: rgba(1, 1, 1, 0.3);
+  .ripple-dark:after{
+    background-image: radial-gradient(circle, #000 10%, transparent 10%);
    }
   
-  @keyframes ripple {
-    50%{
-      transform: scale(2);
-      opacity: 0;
-    }
-
-    100%{
-      transform: scale(1);
-      opacity: 0;
-    }
+  .ripple:active:after {
+    transform: scale(0, 0);
+    opacity: .3;
+    transition: 0s;
   }
-
-  /* Ripple Styles end */
+    /* Ripple Styles end */
